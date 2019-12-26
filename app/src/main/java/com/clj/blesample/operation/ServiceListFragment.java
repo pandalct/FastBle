@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -26,6 +27,7 @@ import java.util.List;
 public class ServiceListFragment extends Fragment {
 
     private TextView txt_name, txt_mac;
+    private Button btn_Sync;
     private ResultAdapter mResultAdapter;
 
     @Override
@@ -39,6 +41,8 @@ public class ServiceListFragment extends Fragment {
     private void initView(View v) {
         txt_name = (TextView) v.findViewById(R.id.txt_name);
         txt_mac = (TextView) v.findViewById(R.id.txt_mac);
+        btn_Sync = (Button) v.findViewById(R.id.btn_sync);
+
 
         mResultAdapter = new ResultAdapter(getActivity());
         ListView listView_device = (ListView) v.findViewById(R.id.list_service);
@@ -49,6 +53,13 @@ public class ServiceListFragment extends Fragment {
                 BluetoothGattService service = mResultAdapter.getItem(position);
                 ((OperationActivity) getActivity()).setBluetoothGattService(service);
                 ((OperationActivity) getActivity()).changePage(1);
+            }
+        });
+
+        btn_Sync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

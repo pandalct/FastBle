@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.clj.blesample.adapter.DeviceAdapter;
 import com.clj.blesample.comm.ObserverManager;
+import com.clj.blesample.operation.BoxActivity;
 import com.clj.blesample.operation.OperationActivity;
 import com.clj.fastble.BleManager;
 import com.clj.fastble.callback.BleGattCallback;
@@ -163,6 +164,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (BleManager.getInstance().isConnected(bleDevice)) {
                     Intent intent = new Intent(MainActivity.this, OperationActivity.class);
                     intent.putExtra(OperationActivity.KEY_DATA, bleDevice);
+                    startActivity(intent);
+                }
+            }
+
+            @Override
+            public void onBox(BleDevice bleDevice) {
+                if (BleManager.getInstance().isConnected(bleDevice)) {
+                    Intent intent = new Intent(MainActivity.this, BoxActivity.class);
+                    intent.putExtra(BoxActivity.KEY_DATA, bleDevice);
                     startActivity(intent);
                 }
             }
