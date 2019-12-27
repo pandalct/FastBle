@@ -37,13 +37,6 @@
                 android:text="盒子\n信息" />
 
             <Button
-                android:id="@+id/btn_charge"
-                android:layout_width="0pt"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:text="电量" />
-
-            <Button
                 android:id="@+id/btn_off"
                 android:layout_width="0pt"
                 android:layout_height="match_parent"
@@ -124,6 +117,31 @@
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+
+            <EditText
+                android:id="@+id/edt_num"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="输入血糖数据序号"
+                android:inputType="number"
+                android:text="" />
+
+
+            <Button
+                android:id="@+id/btn_readDataSingle"
+                android:layout_width="0pt"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="读取指定数据" />
+
+        </LinearLayout>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -165,6 +183,7 @@
             android:inputType="textMultiLine"
             android:textAlignment="textStart"
             android:text=""
+
             android:singleLine="false" />
     </LinearLayout>
 
