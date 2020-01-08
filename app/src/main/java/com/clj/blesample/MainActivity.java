@@ -13,11 +13,6 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -33,10 +28,17 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.clj.blesample.adapter.DeviceAdapter;
 import com.clj.blesample.comm.ObserverManager;
 import com.clj.blesample.operation.BoxActivity;
 import com.clj.blesample.operation.OperationActivity;
+import com.clj.blesample.operation.UpdatorActivity;
 import com.clj.fastble.BleManager;
 import com.clj.fastble.callback.BleGattCallback;
 import com.clj.fastble.callback.BleMtuChangedCallback;
@@ -149,6 +151,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (!BleManager.getInstance().isConnected(bleDevice)) {
                     BleManager.getInstance().cancelScan();
                     connect(bleDevice);
+                }
+            }
+
+            @Override
+            public void onUpdator(BleDevice bleDevice) {
+                if (BleManager.getInstance().isConnected(bleDevice)) {
+                    Intent intent = new Intent(MainActivity.this, UpdatorActivity.class);
+                    intent.putExtra(OperationActivity.KEY_DATA, bleDevice);
+                    startActivity(intent);
                 }
             }
 

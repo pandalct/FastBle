@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-        android:title="@string/app_name"
-        app:titleTextColor="@android:color/white" />
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+
 
     <LinearLayout
         android:id="@+id/layout_setting"
@@ -21,6 +21,7 @@
         android:background="#eeeeee"
         android:orientation="vertical"
         android:padding="20dp">
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -114,6 +115,14 @@
         android:paddingEnd="5dp"
         android:paddingStart="5dp"
         android:scrollbars="none" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
 
 
 </LinearLayout>

@@ -2,24 +2,22 @@ package com.clj.blesample.operation;
 
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.bluetooth.BluetoothGatt;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import com.clj.blesample.R;
 import com.clj.blesample.comm.CRCUtil;
@@ -140,10 +138,9 @@ public class BoxActivity extends AppCompatActivity implements Observer, View.OnC
                             return;
                         }
                         if (result.startsWith("aa 4d 31")) {
-
-                            type =  bytesToAscii(Arrays.copyOfRange(data,3,6));
-                            sendMessage("血糖仪型号：" + type);
-                            return;
+                            type = bytesToAscii(Arrays.copyOfRange(data, 3, 6));
+                            String version = bytesToAscii(Arrays.copyOfRange(data, 6, 12));
+                            sendMessage("血糖仪型号：" + type + ",固件版本：" + version);
                         }
                         sendMessage("接收到回发数据：" + result);
                     }
@@ -328,27 +325,27 @@ public class BoxActivity extends AppCompatActivity implements Observer, View.OnC
 
                 //通知读取血糖仪信息
                 btn_readXTInfo.setEnabled(false);
-                writeData("AA 4c 30 03 30 30 35 30");
-                sendMessage("写入：AA 4c 30 03 30 30 35 30");
+                writeData("AA 4c 30 30 30 30 35 30");
+                sendMessage("写入：AA 4c 30 30 30 30 35 30");
                 break;
             case R.id.btn_readXTInfo:
 
 
                 //读取血糖仪信息
-                writeData("AA 4D 01");
-                sendMessage("写入：AA 4D 01");
+                writeData("AA 4D 31");
+                sendMessage("写入：AA 4D 31");
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        writeData("AA 4D 02");
-                        sendMessage("写入：AA 4D 02");
+                        writeData("AA 4D 32");
+                        sendMessage("写入：AA 4D 32");
                     }
                 },1000);
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        writeData("AA 4D 03");
-                        sendMessage("写入：AA 4D 03");
+                        writeData("AA 4D 33");
+                        sendMessage("写入：AA 4D 33");
                     }
                 },2000);
                 break;

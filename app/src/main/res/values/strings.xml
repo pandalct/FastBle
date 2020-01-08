@@ -38,5 +38,10 @@
     <string name="disconnect">断开连接</string>
     <string name="enter">进入操作</string>
     <string name="btn_Sync">同步数据</string>
+    <string name="off_device">关机</string>
+    <string name="upgrade_device">升级</string>
+    <string name="sn">SN</string>
+    <string name="read_sn">读取SN</string>
+    <string name="write_sn">写入SN</string>
 
 </resources>
